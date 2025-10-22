@@ -10,10 +10,8 @@ from entropy_training.trainers.diffusion_trainer import DiffusionTrainer
 from entropy_training.utils.utils import environment_setup
 from omegaconf import OmegaConf
 
-cfg = OmegaConf.load(
-    Path(entropy_training.__file__).parent / "config.yaml"
-)
-environment_setup(cfg)
+cfg = OmegaConf.load(Path(entropy_training.__file__).parent / "config.yaml")
+# environment_setup(cfg)
 diffusion_trainer = DiffusionTrainer(cfg, inference_mode=True)
 
 def handler(event):
