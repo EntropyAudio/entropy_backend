@@ -3,6 +3,6 @@ from .utils import constants as c
 
 logger = logging.getLogger(c.LOGGER_NAME)
 
-def run_inference(input, model):
+def run_inference(input, diffusion_trainer):
     logger.info("Running inference...")
-    pass
+    print(diffusion_trainer.model)
