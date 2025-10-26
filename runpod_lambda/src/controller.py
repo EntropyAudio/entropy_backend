@@ -27,12 +27,10 @@ def run_inference(cfg, input, trainer):
         output = rearrange(output, "b d n -> d (b n)")
         output = output.to(torch.float32).div(torch.max(torch.abs(output))).clamp(-1, 1).mul(32767).to(torch.int16).cpu()
         output = trim_silence(output)
+        return output
 
-        filename = f"{input['prompt']}.wav"
-        save_dir = f"./{cfg.demo.path}"
-        full_path = f"./{cfg.demo.path}/{filename}"
-        os.makedirs(save_dir, exist_ok=True)
-        torchaudio.save(full_path, output, cfg.audio.sample_rate)
-        torch.cuda.empty_cache()
-
-    return "hey"
+        # filename = f"{input['prompt']}.wav"
+        # save_dir = f"./{cfg.demo.path}"
+        # full_path = f"./{cfg.demo.path}/{filename}"
+        # os.makedirs(save_dir, exist_ok=True)
+        # torchaudio.save(full_path, output, cfg.audio.sample_rate)
