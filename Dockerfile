@@ -15,6 +15,6 @@ RUN pip install -e ./entropy_metrics/
 RUN pip install -e ./entropy_stable_audio_open/
 RUN pip install -e ./entropy_training/
 
-RUN pip install transformers bitsandbytes accelerate einpods julius omegaconf k_diffusion
+RUN pip install transformers bitsandbytes accelerate einops julius omegaconf k_diffusion
 
 CMD ["python", "-m", "runpod_lambda.src.handler"]
