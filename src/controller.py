@@ -33,17 +33,18 @@ def run_inference(cfg, input, model):
 
         max_vals = torch.max(torch.abs(output), dim=-1, keepdim=True)[0] + 1e-7
 
-        output_batch = (output
-                        .div(max_vals)
-                        .clamp(-1, 1)
-                        .mul(32767)
-                        .round()
-                        .to(torch.int16)
-                        )
+        output = (
+            output
+            .div(max_vals)
+            .clamp(-1, 1)
+            .mul(32767)
+            .round()
+            .to(torch.int16)
+        )
 
-        output = []
-        for single_audio_tensor in output_batch.cpu():
-            trimmed_audio = trim_silence(single_audio_tensor)
+        output_list = []
+        for audio_tensor in output.cpu():
+            trimmed_audio = trim_silence(audio_tensor)
 
             buffer = io.BytesIO()
             torchaudio.save(
@@ -53,8 +54,7 @@ def run_inference(cfg, input, model):
                 format="wav"
             )
             buffer.seek(0)
-
             base64_audio = base64.b64encode(buffer.read()).decode('utf-8')
-            output.append(base64_audio)
+            output_list.append(base64_audio)
 
-        return output
+        return output_list
