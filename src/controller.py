@@ -24,9 +24,9 @@ def run_inference(cfg, input, model):
             latent_size=cfg.audio.latent_size,
             sigma_min=0.3,
             sigma_max=500,
-            rho=1.0,
-            # sampler_type="dpmpp-3m-sde",
-            sampler_type="dpmpp-2m-sde",
+            # rho=1.0,
+            sampler_type="dpmpp-3m-sde",
+            # sampler_type="dpmpp-2m-sde",
             # sampler_type="dpmpp-2m",
             # sampler_type="k-dpmpp-2s-ancestral",
         )
