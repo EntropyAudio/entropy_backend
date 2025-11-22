@@ -11,7 +11,7 @@ import base64
 
 logger = logging.getLogger(c.LOGGER_NAME)
 
-def run_inference(cfg, prompt, batch_size, model):
+def run_inference(cfg, model, prompt, batch_size):
     logger.info("Running inference...")
 
     with torch.inference_mode() and torch.autocast(device_type=cfg.environment.device, dtype=torch.float32):
