@@ -11,7 +11,7 @@ from entropy_training.src.utils.utils import print_environment_info, set_cudnn_b
     adjust_ckpt_keys
 from omegaconf import OmegaConf
 
-cfg = OmegaConf.load(Path(entropy_training.__file__).parent / "config.yaml")
+cfg = OmegaConf.load(Path(entropy_training.__file__).parent / "configs" / "training.yaml")
 
 print_environment_info()
 set_cudnn_benchmarking(cfg)
